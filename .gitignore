@@ -35,3 +35,4 @@ build/
 hs_err_pid3237.log
 mvnw
 mvnw.cmd
+*.log
