@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Index</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">Welcome!</h1>
+      <p class="lead">Purchase fresh product directly from farm no middle party</p>
+      <a sec:authorize="isAnonymous()" href="/signup" th:href="@{/signup}" class="btn btn-primary btn-lg">Register</a>
+    </header>
+    <div class="row">
+    <div th:each="product : ${products}" class="col-sm-3" >
+    	<form th:action="@{/purchase}" method="post" th:modelAttribute="buyproduct">
+    	<div class="gridmargin">
+          <div class="card h-100 ">
+          <img class="card-img-top" th:src="@{/img/product.png}" alt="">
+          <div class="card-body">
+            <h4 class="card-title" th:text="${product.productName}">Card title</h4>
+            <input hidden=enabled name="productName" th:value="${product.productName}">
+            <p class="card-text" th:text="${product.productDescription}">text edit</p>
+            <input hidden=enabled th:name="productDescription" th:value="${product.productDescription}">
+            <input hidden=enabled th:name="productId" th:value="${product.productId}">
+            <input hidden=enabled th:name="UserId" th:value="${product.UserId}">
+          </div>
+          <div class="card-footer">
+                            
+          	<div class = "row">
+          	<input type="submit" class="btn btn-primary btn-block" th:id=${product.productId} value="Buy">
+            <!--  <input type="submit" class="btn btn-primary btn-block" value="Add To Cart"> -->
+          </div>
+          </div>
+        </div>
+    	</div>
+    	</form>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

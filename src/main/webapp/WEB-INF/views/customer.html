@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Customer</title>
+</head>
+<body >
+<div layout:fragment="content" th:remove="tag">
+	<div th:if="${not #lists.isEmpty(session.newPurchase)}">
+	<h2>New Purchase</h2>
+    <table class="table table-bordered" >
+	  	<thead>
+		    <tr class= "bg-info">
+		      <th scope="col">#</th>
+		      <th scope="col">Product Name</th>
+		      <th scope="col">Product Description</th>
+		      <th scope="col">Purchased By</th>
+		      <!--  <th></th> -->
+		    </tr>
+	  	</thead>
+  		<tbody>
+	    <tr th:each="purchase, index : ${session.newPurchase}">
+	      <td th:text="${index.index} + 1"></td>
+	      <td th:text="${purchase.productName}"></td>
+	      <td th:text="${purchase.productDescription}"></td>
+	      <td > To do --add purchased by</td>
+	     <!--   <td> <input type="submit"
+                   name="purchase-delete"
+                   id="purchase-delete"
+                   class="col-sm-offset-3 btn btn-primary"
+                   value="delete"
+                   th:href=@{/purchase-delete}> 
+         </td> -->
+	    </tr>
+	  </tbody>
+	</table>
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-3">
+            <form th:action=@{/purchase-ok}>
+            <input type="submit"
+                   class="form-control btn btn-primary"
+                   name="action"
+                   value="Confirm"
+                   >
+            </form>
+        </div>
+        <div class="col-sm-3 col-sm-offset-3">
+            <form th:action=@{/purchase-ok}>
+            <input type="submit"
+                   class="form-control btn btn-primary"
+                   name="action"
+                   value="Cancel"
+                   >
+            </form>
+        </div>
+    </div>
+	</div>
+	<h2>Customer Purchase History</h2>
+    <table class="table table-bordered" >
+	  	<thead>
+		    <tr class= "bg-info">
+		      <th scope="col">#</th>
+		      <th scope="col">Product Name</th>
+		      <th scope="col">Product Description</th>
+		      <th scope="col">Purchased On</th>
+		      <td> Purchased From</td>
+		    </tr>
+	  	</thead>
+  		<tbody>
+	    <tr th:each="transction, index : ${transactions}">
+	      <td th:text="${index.index} + 1"></td>
+	      <td th:text="${transction.getProducts().productName}"></td>
+	      <td th:text="${transction.getProducts().productDescription}"></td>
+	      <td th:text="${transction.purchasedOn}"></td>
+	      <td > To do --add purchased by</td>
+	    </tr>
+	  </tbody>
+	</table>
+    </div>
+</body>
+</html>

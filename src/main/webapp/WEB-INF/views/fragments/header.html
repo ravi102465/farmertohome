@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org">
+<body>
+<th:block th:fragment="header">
+  <nav class="navbar navbar-fixed-top navbar-inverse navbar-static-top navbar-expand-sm bg-dark navbar-dark" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" th:href="@{/}">
+      		<img th:src="@{/img/logo.png}" alt="company logo" height="40" width="40" 
+      		/>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger " sec:authorize="isAuthenticated()" href="/farmer" th:href= "@{/farmer}" >Farmer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" sec:authorize="isAuthenticated()" href="/customer" th:href= "@{/customer}">Customer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger"href="/contact" th:href= "@{/contact}">Contact</a>
+          </li>
+          <li class="nav-item" sec:authorize="isAuthenticated()">
+			<div class="dropdown">
+			  <a class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown">Profile</a>
+			  <div class="dropdown-menu">
+			  	<a class="dropdown-item" th:if="${session.containsKey('username')}" th:text="${session.username}" th:href=@{/profile}>My details</a>
+			    <a class="dropdown-item" href="/logout" th:href= "@{/logout}">SignOut</a>
+			  </div>
+			</div>
+          </li>
+          <li class="nav-item" sec:authorize="isAnonymous()">
+			<a class="nav-link js-scroll-trigger" href="/login" th:href= "@{/login}">SignIn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</th:block>
+</body>
+</html>

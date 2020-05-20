@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Access Denied</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h2>Error while processing request</h2>
+    <div th:if="${ErorType==404}"> <h3>Error - 404 Requested Path Not Found</h3></div>
+    <div th:if="${ErorType==500}"> <h3>Error - 500 Internal Server Error</h3></div>
+    <p><a href="/" th:href="@{/}"> Back to home page</a></p>
+</div>
+</body>
+</html>

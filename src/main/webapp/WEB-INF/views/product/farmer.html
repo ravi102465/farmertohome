@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Customer</title>
+</head>
+<body >
+<div layout:fragment="content" th:remove="tag">
+	<div class="container">
+	<h2>List New Product</h2>
+	 <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+           <form action="#" th:action="@{/farmer}" method="post"
+            	th:modelAttribute="newproduct" th:object="${newproduct}">
+            	<div th:if="${#fields.hasAnyErrors()}">
+            	 <div class="alert alert-danger">
+				  	<ul>
+					    <li th:each="e : ${#fields.detailedErrors()}" th:class="${e.global}? globalerr : fielderr">
+					        <span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span>
+					        <span th:text="${e.message}">The error message</span>
+					    </li>
+					</ul>
+				  </div>
+				</div>                 
+                <div class="form-group">
+                    <label for="productname">Product Name</label>:
+                    <input type="text"
+                           id="productName"
+                           name="productName"
+                           class="form-control"
+                           autofocus="autofocus"
+                           placeholder="Product Name"
+                           >
+                </div>
+                <div class="form-group">
+                    <label for="productdescription">Product Description</label>:
+                    <input type="text"
+                           id="productDescription"
+                           name="productDescription"
+                           class="form-control"
+                           placeholder="Product Description"
+                           >
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   name="list-submit"
+                                   id="list-submit"
+                                   class="form-control btn btn-primary"
+                                   value="List">
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   name="cancel-submit"
+                                   id="cancel-submit"
+                                   class="form-control btn btn-primary"
+                                   value="Cancel">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+	
+	<div th:height=10px></div>
+	<h2>Already Listed Product</h2>
+    <table class="table table-bordered" >
+	  	<thead>
+		    <tr class= "bg-info">
+		      <th scope="col">#</th>
+		      <th scope="col">Product Name</th>
+		      <th scope="col">Product Description</th>
+		      <th scope="col">Listed on</th>
+		    </tr>
+	  	</thead>
+  		<tbody>
+	    <tr th:each="product, index : ${listedproducts}">
+	      <td th:text="${index.index} + 1"></td>
+	      <td th:text="${product.productName}"></td>
+	      <td th:text="${product.productDescription}"></td>
+	      <td><time datetime="1914-12-20 08:30:45" th:text="${product.listedOn}"></time></td>
+	    </tr>
+	  </tbody>
+	</table>
+    </div>
+</div>
+<div th:height=10px></div>
+</body>
+</html>
