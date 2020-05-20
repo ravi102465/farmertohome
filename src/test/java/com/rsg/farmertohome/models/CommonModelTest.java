@@ -2,7 +2,7 @@ package com.rsg.farmertohome.models;
 
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.openpojo.reflection.PojoClass;
@@ -22,7 +22,7 @@ public class CommonModelTest {
 
 	private ValidatorBuilder validatorBuilder;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		pojoClasses = PojoClassFactory.getPojoClasses(POJO_PACKAGE);
 		validatorBuilder = ValidatorBuilder.create();

@@ -61,7 +61,14 @@ class WebMvcConfiguration implements WebMvcConfigurer {
     }
 
 	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
+	public RestTemplate restTemplate() {
+		
+		return restTemplateBuilder().build();
+	}
+	
+	@Bean
+	public RestTemplateBuilder restTemplateBuilder()
+	{
+		return new RestTemplateBuilder();
 	}
 }
