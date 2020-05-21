@@ -1,5 +1,6 @@
 package com.rsg.farmertohome.services;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class TransactionService {
 			Transaction transaction = new Transaction();
 			transaction.setUserId(userId);
 			transaction.setProductId(purchase.getProductId());
+			transaction.setPurchasedOn(new Timestamp(System.currentTimeMillis()));
 			String apiURL = serviceUrl+ rootPath + "transaction";
 			
 			restTemplate.postForObject(apiURL, transaction, Transaction.class);

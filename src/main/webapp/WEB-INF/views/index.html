@@ -12,7 +12,8 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">Welcome!</h1>
+      <h1 sec:authorize="isAnonymous()" class="display-3">Welcome!</h1>
+      <h1 sec:authorize="isAuthenticated()" class="display-3" th:text="'Welcome! ' + ${session.username}">Welcome!</h1>
       <p class="lead">Purchase fresh product directly from farm no middle party</p>
       <a sec:authorize="isAnonymous()" href="/signup" th:href="@{/signup}" class="btn btn-primary btn-lg">Register</a>
     </header>

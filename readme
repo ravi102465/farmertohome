@@ -1,0 +1,22 @@
+Brief Description of Development
+
+	- Postgres is used as backend to store data.
+	
+	- Develpoed two Project:
+		- farmertohome-api 
+			- This has database connection using jpa 
+			- Expose api to consume by client
+
+		- farmertohome
+			-This is web mvc application
+			-it consume above api
+			- Thymeleaf templating tool is used for html templating
+
+Following features are developed:
+	- User can register himself, Update password, Update details.
+	- Home page show the list of product listed by farmer and can  		
+	  purchase
+	- On click of buy if user is not logged in they will be redirected to login page
+	- User can buy product it will show it in their hostory
+	- user can list product to sell the farmer page has option of        adding  and shows list of product they have added.
+	- Web page has login option home page will have different view dependin upon wether user has logged in or not.
